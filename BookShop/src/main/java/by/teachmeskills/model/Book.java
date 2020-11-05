@@ -43,6 +43,9 @@ public class Book {
     @Column(name = "count_in_storage", nullable = false)
     private Integer count_in_storage = null;
 
+    @OneToOne(mappedBy = "book")
+    OrderItem order_item;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category = null;

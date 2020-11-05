@@ -29,7 +29,7 @@ public class Test {
         }
 
 
-        Book updBook = Book.builder().year_of_publication(1929).build();
+        Book updBook = Book.builder().year_of_publication(1928).build();
         BookDao.getINSTANCE().updateBook(1l, updBook);
 //BookDao.getINSTANCE().updateBook(1l,updBook);
 
