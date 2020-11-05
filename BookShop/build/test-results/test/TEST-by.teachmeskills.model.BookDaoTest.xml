@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="by.teachmeskills.model.BookDaoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-04T18:25:16" hostname="magma" time="1.494">
+  <properties/>
+  <testcase name="getBookId" classname="by.teachmeskills.model.BookDaoTest" time="1.494"/>
+  <system-out><![CDATA[Hibernate: 
+    select
+        publisher0_.id as id1_6_,
+        publisher0_.name as name2_6_ 
+    from
+        Publisher publisher0_ 
+    where
+        publisher0_.id=?
+This publisher not exist
+Hibernate: 
+    select
+        publisher0_.id as id1_6_,
+        publisher0_.name as name2_6_ 
+    from
+        Publisher publisher0_ 
+    where
+        publisher0_.id=?
+false
+]]></system-out>
+  <system-err><![CDATA[ноя 04, 2020 9:25:16 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version 5.4.22.Final
+ноя 04, 2020 9:25:16 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+ноя 04, 2020 9:25:16 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+ноя 04, 2020 9:25:16 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:54320/db]
+ноя 04, 2020 9:25:16 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {user=user, password=****}
+ноя 04, 2020 9:25:16 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+ноя 04, 2020 9:25:16 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+ноя 04, 2020 9:25:16 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+ноя 04, 2020 9:25:17 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+]]></system-err>
+</testsuite>
