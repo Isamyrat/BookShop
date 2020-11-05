@@ -2,7 +2,6 @@ package by.teachmeskills.dao;
 
 import by.teachmeskills.model.Book;
 import by.teachmeskills.model.OrderItem;
-import by.teachmeskills.model.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,22 +13,36 @@ public class OrderItemDao {
     public static final OrderItemDao INSTANCE = new OrderItemDao();
     SessionFactory FACTORY = new Configuration().configure().buildSessionFactory();
 
-    public Serializable saveOrderItem(String name,Long i){
+    public Serializable saveOrderItem(Long idBook,Long idOrders){
         Serializable id =0;
         try(Session session=FACTORY.openSession()){
             session.getTransaction();
-            Book book= (Book) BookDao.getINSTANCE().getBookFromName(name);
+            Book book=BookDao.getINSTANCE().getBookById(idBook);
             OrderItem orderItem =OrderItem.builder()
                     .book(book)
-                    .order(OrdersDao.getINSTANCE().getOrders(i))
+                    .order(OrdersDao.getINSTANCE().getOrdersById(idOrders))
                     .price(book.getPrice())
                     .build();
             id=session.save(orderItem);
         }
         return id;
     }
-
-    public OrderItem getOrderItem(Long id){
+    public void deleteOrderItem(Long id){
+        if(OrderItemDao.getINSTANCE().existId(id)) {
+            try (Session session = FACTORY.openSession()) {
+                OrderItem orderItem = session.load(OrderItem.class, id);
+                session.delete(orderItem);
+                session.beginTransaction();
+                session.getTransaction().commit();
+                FACTORY.close();
+            }catch (NullPointerException | IllegalArgumentException e) {
+                System.err.println("This orderItem not exist");
+            }finally{
+                FACTORY.close();
+            }
+        }
+    }
+    public OrderItem getOrderItemById(Long id){
         try (Session session = FACTORY.openSession()) {
             session.beginTransaction();
             OrderItem orderItem = null;
@@ -45,10 +58,18 @@ public class OrderItemDao {
             }
             return orderItem;
         }
-
     }
 
-
+    public Boolean existId(Long id) {
+        Session session = FACTORY.openSession();
+        Query query = session.
+                createQuery("select o from OrderItem o where o.id = :id");
+        query.setParameter("id", id);
+        if (query.uniqueResult() == null) {
+            System.out.println("This orders not exist");
+        }
+        return (query.uniqueResult() != null);
+    }
 
 
 

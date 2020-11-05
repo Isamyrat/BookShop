@@ -1,7 +1,6 @@
 package by.teachmeskills.dao;
 
 import by.teachmeskills.model.Orders;
-import by.teachmeskills.service.CheckId;
 import by.teachmeskills.service.OrdersService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,7 +14,7 @@ public class OrdersDao {
     private static final OrdersDao INSTANCE = new OrdersDao();
     SessionFactory FACTORY = new Configuration().configure().buildSessionFactory();
 
-    public Serializable saveBook(LocalDateTime l, String name, String t_pay, String phone, int price, boolean paid) {
+    public Serializable saveOrdersDao(LocalDateTime l, String name, String t_pay, String phone, int price, boolean paid) {
         Serializable id=0;
         if(OrdersService.getNumber(phone)) {
            try (Session session = FACTORY.openSession()) {
@@ -36,21 +35,18 @@ public class OrdersDao {
     }
 
     public void deleteOrders(Long id){
-        try (Session session = FACTORY.openSession()) {
-            session.beginTransaction();
-            boolean result = CheckId.checkOrdersId(id);
-            if (result) {
+        if(OrdersDao.getINSTANCE().existId(id)) {
+            try (Session session = FACTORY.openSession()) {
+                session.beginTransaction();
                 Orders orders = session.load(Orders.class, id);
                 session.delete(orders);
-            } else {
-                System.out.println("Orders with this id was not found!!!!");
+                session.getTransaction().commit();
+                FACTORY.close();
             }
-            session.getTransaction().commit();
-            FACTORY.close();
         }
     }
 
-    public Orders getOrders(Long id){
+    public Orders getOrdersById(Long id){
             try (Session session = FACTORY.openSession()) {
                 session.beginTransaction();
                 Orders orders = null;
@@ -68,6 +64,17 @@ public class OrdersDao {
             }
 
         }
+
+    public Boolean existId(Long id) {
+        Session session = FACTORY.openSession();
+        Query query = session.
+                createQuery("select ord from Orders ord where ord.id = :id");
+        query.setParameter("id", id);
+        if (query.uniqueResult() == null) {
+            System.out.println("This orders not exist");
+        }
+        return (query.uniqueResult() != null);
+    }
 
     public static OrdersDao getINSTANCE() {
         return INSTANCE;

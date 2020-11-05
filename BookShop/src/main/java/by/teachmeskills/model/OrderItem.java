@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "order_item")
+@Table (name = "orders_item")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
      @OneToOne (optional = false, cascade = CascadeType.ALL)
      @JoinColumn(name="book_id")
@@ -25,7 +25,7 @@ public class OrderItem {
     @JoinColumn(name = "order_id", nullable=false)
     private Orders order;
 
-   @Column(name = "price",nullable = false)
-    private double price;
+   @Column(name = "price_of_item",nullable = false)
+    private Double price;
 
 }

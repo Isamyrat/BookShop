@@ -18,7 +18,7 @@ public class Orders {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column (name="time_of_order",nullable = false)
     private LocalDateTime time_of_order;
@@ -33,12 +33,12 @@ public class Orders {
     private String user_phone;
 
     @Column (name="order_price",nullable = false)
-    private int order_price;
+    private Integer order_price;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orders_items = new ArrayList<>();
 
     @Column(name = "paid_up")
-    private boolean paid_up;
+    private Boolean paid_up;
 
 }

@@ -22,30 +22,30 @@ public class Book {
     private Long id;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    private String name = null;
 
     @Column(name = "author", nullable = false)
-    private String author;
+    private String author = null;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Double price = null;
 
     @Column(name = "describe", nullable = false)
-    private String describe;
+    private String describe= null;
 
     @Column(name = "year_of_publication", nullable = false)
-    private int year_of_publication;
+    private Integer year_of_publication = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
+    private Publisher publisher = null;
 
     @Column(name = "count_in_storage", nullable = false)
-    private Integer count_in_storage;
+    private Integer count_in_storage = null;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category category;
+    private Category category = null;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "cart_book",

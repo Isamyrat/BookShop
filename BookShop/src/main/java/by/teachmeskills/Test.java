@@ -1,19 +1,10 @@
 package by.teachmeskills;
 
 import by.teachmeskills.dao.BookDao;
-import by.teachmeskills.dao.CategoryDao;
-import by.teachmeskills.dao.PublisherDao;
 import by.teachmeskills.model.Book;
-import by.teachmeskills.model.Publisher;
-import by.teachmeskills.service.BookService;
-import by.teachmeskills.service.CheckId;
-import by.teachmeskills.service.OrdersService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-
-import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
@@ -31,10 +22,16 @@ public class Test {
 //                System.out.println();
 //            }
 //            Book book= BookDao.getINSTANCE().getBook("Harry Porter and the Philosophers Stone");
-            Book book = BookDao.getINSTANCE().getBookFromId(2L);
-            System.out.println(book.toString());
+//            Book book = BookDao.getINSTANCE().getBookById(2L);
+//            System.out.println(book.toString());
             session.getTransaction().commit();
             FACTORY.close();
         }
+
+
+        Book updBook = Book.builder().year_of_publication(1929).build();
+        BookDao.getINSTANCE().updateBook(1l, updBook);
+//BookDao.getINSTANCE().updateBook(1l,updBook);
+
     }
 }

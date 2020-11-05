@@ -2,7 +2,6 @@ package by.teachmeskills.dao;
 
 import by.teachmeskills.model.Book;
 import by.teachmeskills.model.Publisher;
-import by.teachmeskills.service.CheckId;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
