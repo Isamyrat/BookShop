@@ -29,5 +29,9 @@ public class Cart {
 
     public Cart(Long id) {
     }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }
 

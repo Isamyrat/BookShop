@@ -14,6 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+
 public class OrderItemKey implements Serializable {
 
 

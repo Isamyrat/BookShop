@@ -79,9 +79,7 @@ public final class BookDao {
                 book = query.getSingleResult();
                 session.getTransaction().commit();
             } catch (NullPointerException | IllegalArgumentException e) {
-                System.err.println("This publisher not exist");
-            } finally {
-                FACTORY.close();
+                System.err.println("This book not exist");
             }
         }
         return book;
