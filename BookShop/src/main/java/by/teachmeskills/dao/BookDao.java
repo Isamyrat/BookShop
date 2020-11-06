@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
@@ -78,9 +79,7 @@ public final class BookDao {
                 book = query.getSingleResult();
                 session.getTransaction().commit();
             } catch (NullPointerException | IllegalArgumentException e) {
-                System.err.println("This publisher not exist");
-            } finally {
-                FACTORY.close();
+                System.err.println("This book not exist");
             }
         }
         return book;
