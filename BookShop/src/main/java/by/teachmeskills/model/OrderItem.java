@@ -13,20 +13,19 @@ import javax.persistence.*;
 @Builder
 public class OrderItem {
 
-    @EmbeddedId
-    private OrderItemKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-     @OneToOne (optional = false, cascade = CascadeType.ALL)
-     @MapsId("bookId")
-     @JoinColumn(name="book_id")
+    @OneToOne (optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name="book_id")
     private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("orderId")
     @JoinColumn(name = "order_id", nullable=false)
     private Orders order;
 
-   @Column(name = "price_of_item",nullable = false)
-    private Double price;
+    @Column(name = "price_of_item",nullable = false)
+    private double price;
 
 }
