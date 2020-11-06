@@ -13,15 +13,16 @@ import javax.persistence.*;
 @Builder
 public class OrderItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private OrderItemKey id;
 
      @OneToOne (optional = false, cascade = CascadeType.ALL)
+     @MapsId("bookId")
      @JoinColumn(name="book_id")
     private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("orderId")
     @JoinColumn(name = "order_id", nullable=false)
     private Orders order;
 
