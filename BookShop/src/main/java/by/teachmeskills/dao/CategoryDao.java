@@ -27,7 +27,7 @@ public final class CategoryDao {
         }
     }
 
-    public void deleteCategory(Long id) {
+    public void deleteCategory(Byte id) {
         if(CategoryDao.getINSTANCE().existId(id)) {
             try (Session session = FACTORY.openSession()) {
                 session.beginTransaction();
@@ -52,7 +52,7 @@ public final class CategoryDao {
         return categories;
     }
 
-    public Category getCategoryById(Long id) {
+    public Category getCategoryById(Byte id) {
         Category category= null;
         if(CategoryDao.getINSTANCE().existId(id)) {
             try (Session session = FACTORY.openSession()) {
@@ -88,7 +88,7 @@ public final class CategoryDao {
         return (query.uniqueResult() != null);
     }
 
-    public Boolean existId(Long id) {
+    public Boolean existId(Byte id) {
         Session session = FACTORY.openSession();
         Query query = session.
                 createQuery("select c from Category c where c.id = :id");

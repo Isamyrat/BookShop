@@ -15,9 +15,19 @@ public class Test {
 //Book bookForInsert = BookDao.getINSTANCE().getBookById(1l);
 //        Book bookForInsert2 = BookDao.getINSTANCE().getBookById(2l);
 //CartDao.getINSTANCE().saveBookToCart(1l,bookForInsert);
-        CartDao.getINSTANCE().saveBookToCartById(11l,1l);
 
 
+      /*  saveBook(String name, String author, Double price, String describe,
+        int year, int count, String namePub, Long idCategory) {*/
+      //  BookDao.getINSTANCE().saveBook("Cthulhu", "H.P. Lovecraft", 2.5,
+              //  "Scary story",1928,30,"Dialectica", (byte) 1);
+
+//        CartDao.getINSTANCE().saveBookToCartById(10l,3l);
+//        CartDao.getINSTANCE().saveBookToCartById(10l,2l);
+//        CartDao.getINSTANCE().saveBookToCartById(10l,3l);
+//        CartDao.getINSTANCE().saveBookToCartById(10l,2l);
+CartDao.getINSTANCE().removeBookFromCart(12l,2l);
+//CartDao.getINSTANCE().deleteCart(1l);
 
 //       Cart gettCart =  CartDao.getINSTANCE().getCart(20l);
 //        System.out.println("CCCCCCCCC " + gettCart.getId());

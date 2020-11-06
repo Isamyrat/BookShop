@@ -21,7 +21,7 @@ public final class BookDao {
     }
 
     public Serializable saveBook(String name, String author, Double price, String describe,
-                                 int year, int count, String namePub, Long idCategory) {
+                                 int year, int count, String namePub, Byte idCategory) {
         try (Session session = FACTORY.openSession()) {
             session.beginTransaction();
             Publisher publisher = PublisherDao.getINSTANCE().getPublisher(namePub);

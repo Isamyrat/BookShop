@@ -27,15 +27,35 @@ public class CartDao {
             return id;
         }
     }
-
+    //переписат, удаляет все карты
     public void deleteCart(Long id) {
         if (CartDao.getINSTANCE().existId(id)) {
             try (Session session = FACTORY.openSession()) {
                 session.beginTransaction();
-                Cart cart = session.load(Cart.class, id);
+                Cart cart = getINSTANCE().getCart(id);
                 session.delete(cart);
                 session.getTransaction().commit();
                 session.close();
+            }
+        }
+    }
+
+    public void removeBookFromCart(Long cartId, Long bookId){
+        if (getINSTANCE().existId(cartId) && BookDao.getINSTANCE().existId(bookId)) {
+            try {
+                Session session = FACTORY.openSession();
+                session.beginTransaction();
+                Query queryCart = session.createQuery("select c from Cart c where c.id =:id", Cart.class)
+                        .setParameter("id", cartId);
+                Cart updateCart = (Cart) queryCart.getSingleResult();
+                Query queryBook = session.createQuery("select b from Book b where b.id =:id", Book.class)
+                        .setParameter("id", bookId);
+                Book bookForRemove = (Book) queryBook.getSingleResult();
+                updateCart.getBooks().remove(bookForRemove);
+                session.update(updateCart);
+                session.getTransaction().commit();
+            } finally {
+                FACTORY.close();
             }
         }
     }
@@ -72,8 +92,9 @@ public class CartDao {
                 updateCart.getBooks().add(bookForInsert);
                 session.update(updateCart);
                 session.getTransaction().commit();
+                session.close();
             } finally {
-                FACTORY.close();
+              // FACTORY.close();
             }
         }
     }

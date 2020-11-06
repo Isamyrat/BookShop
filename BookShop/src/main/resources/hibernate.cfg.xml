@@ -17,7 +17,6 @@
         <mapping class="by.teachmeskills.model.Category"/>
         <mapping class="by.teachmeskills.model.RequestCall"/>
         <mapping class="by.teachmeskills.model.OrderItem"/>
-        <mapping class="by.teachmeskills.model.OrderItemKey"/>
         <mapping class="by.teachmeskills.model.Cart"/>
         <mapping class="by.teachmeskills.model.Orders"/>
         <!-- DB schema will be updated if needed -->
