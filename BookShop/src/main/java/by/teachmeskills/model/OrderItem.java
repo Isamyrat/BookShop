@@ -15,17 +15,17 @@ public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-     @OneToOne (optional = false, cascade = CascadeType.ALL)
-     @JoinColumn(name="book_id")
+    @OneToOne (optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name="book_id")
     private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable=false)
     private Orders order;
 
-   @Column(name = "price_of_item",nullable = false)
-    private Double price;
+    @Column(name = "price_of_item",nullable = false)
+    private double price;
 
 }
